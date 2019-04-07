@@ -3,7 +3,7 @@
   "version": "0.0.2",
   "description": "emit type checker",
   "keywords": [
-    "@emit-js/emit",
+    "emit",
     "type"
   ],
   "author": "emit <emit@emit-js.com>",
