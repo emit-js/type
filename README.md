@@ -1,35 +1,37 @@
-# @dot-event/type
+# @emit-js/type
+
+[emit](https://github.com/emit-js/emit#readme) type checking
 
 ![type](type.gif)
 
 ## Install
 
 ```bash
-npm install @dot-event/type
+npm install @emit-js/type
 ```
 
 ## Setup
 
 ```js
-var dot = require("dot-event")()
-require("@dot-event/type")(dot)
+var emit = require("@emit-js/emit")()
+require("@emit-js/type")(emit)
 ```
 
 ## Usage
 
 ```js
-expect(dot.type({ arg: "" })).toBe("string")
+expect(emit.type("")).toBe("string")
 
 expect(
-  dot.typeCheck({ check: "", type: "string" })
+  emit.typeCheck({ check: "", type: "string" })
 ).toBeTruthy()
 
 expect(
-  dot.typeCheck({ check: true, type: "any" })
+  emit.typeCheck({ check: true, type: "any" })
 ).toBeTruthy()
 
 expect(
-  dot.typeCheck({ check: true, type: "boolean | string" })
+  emit.typeCheck({ check: true, type: "boolean | string" })
 ).toBeTruthy()
 ```
 

@@ -11,16 +11,16 @@ var classToType = {
   "[object Symbol]": "symbol",
 }
 
-module.exports = function(dot) {
-  if (dot.type) {
+module.exports = function(emit) {
+  if (emit.type) {
     return
   }
 
-  dot.any("type", type)
-  dot.any("typeCheck", typeCheck)
+  emit.any("type", type)
+  emit.any("typeCheck", typeCheck)
 }
 
-function type(prop, arg) {
+function type(arg) {
   if (arg == null) {
     return arg + ""
   }
@@ -33,8 +33,8 @@ function type(prop, arg) {
       : typeof arg
 }
 
-function typeCheck(prop, arg, dot) {
-  var type = dot.type(prop, { arg: arg.check }),
+function typeCheck(arg, prop, emit) {
+  var type = emit.type(prop, arg.check),
     types = arg.type.split(/\s+\|\s+/)
   return (
     types.indexOf("any") > -1 || types.indexOf(type) > -1

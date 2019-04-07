@@ -2,35 +2,33 @@
 /* eslint-env jest */
 
 test("type", function() {
-  var dot = require("dot-event")()
-  require("../")(dot)
+  var emit = require("@emit-js/emit")()
+  require("../")(emit)
 
-  expect(dot.type({ arg: "" })).toBe("string")
-  expect(dot.type({ arg: [] })).toBe("array")
-  expect(dot.type({ arg: {} })).toBe("object")
-  expect(dot.type({ arg: Promise.resolve() })).toBe(
-    "promise"
-  )
+  expect(emit.type("")).toBe("string")
+  expect(emit.type([])).toBe("array")
+  expect(emit.type({})).toBe("object")
+  expect(emit.type(Promise.resolve())).toBe("promise")
 })
 
 test("typeCheck", function() {
-  var dot = require("dot-event")()
-  require("../")(dot)
+  var emit = require("@emit-js/emit")()
+  require("../")(emit)
 
   expect(
-    dot.typeCheck({ check: "", type: "string" })
+    emit.typeCheck({ check: "", type: "string" })
   ).toBeTruthy()
 
   expect(
-    dot.typeCheck({ check: [], type: "array" })
+    emit.typeCheck({ check: [], type: "array" })
   ).toBeTruthy()
 
   expect(
-    dot.typeCheck({ check: {}, type: "object" })
+    emit.typeCheck({ check: {}, type: "object" })
   ).toBeTruthy()
 
   expect(
-    dot.typeCheck({
+    emit.typeCheck({
       check: Promise.resolve(),
       type: "promise",
     })
@@ -38,55 +36,58 @@ test("typeCheck", function() {
 })
 
 test("typeCheck (fail)", function() {
-  var dot = require("dot-event")()
-  require("../")(dot)
+  var emit = require("@emit-js/emit")()
+  require("../")(emit)
 
   expect(
-    dot.typeCheck({ check: [], type: "string" })
+    emit.typeCheck({ check: [], type: "string" })
   ).not.toBeTruthy()
 
   expect(
-    dot.typeCheck({ check: "", type: "array" })
+    emit.typeCheck({ check: "", type: "array" })
   ).not.toBeTruthy()
 
   expect(
-    dot.typeCheck({
+    emit.typeCheck({
       check: Promise.resolve(),
       type: "object",
     })
   ).not.toBeTruthy()
 
   expect(
-    dot.typeCheck({ check: {}, type: "promise" })
+    emit.typeCheck({ check: {}, type: "promise" })
   ).not.toBeTruthy()
 })
 
 test("typeCheck (any)", function() {
-  var dot = require("dot-event")()
-  require("../")(dot)
+  var emit = require("@emit-js/emit")()
+  require("../")(emit)
 
   expect(
-    dot.typeCheck({ check: true, type: "any" })
+    emit.typeCheck({ check: true, type: "any" })
   ).toBeTruthy()
 
   expect(
-    dot.typeCheck({ check: "", type: "any" })
+    emit.typeCheck({ check: "", type: "any" })
   ).toBeTruthy()
 })
 
 test("typeCheck (or)", function() {
-  var dot = require("dot-event")()
-  require("../")(dot)
+  var emit = require("@emit-js/emit")()
+  require("../")(emit)
 
   expect(
-    dot.typeCheck({ check: true, type: "boolean | string" })
+    emit.typeCheck({
+      check: true,
+      type: "boolean | string",
+    })
   ).toBeTruthy()
 
   expect(
-    dot.typeCheck({ check: "", type: "boolean | string" })
+    emit.typeCheck({ check: "", type: "boolean | string" })
   ).toBeTruthy()
 
   expect(
-    dot.typeCheck({ check: {}, type: "boolean | string" })
+    emit.typeCheck({ check: {}, type: "boolean | string" })
   ).not.toBeTruthy()
 })
