@@ -1,6 +1,6 @@
 {
   "name": "@emit-js/type",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "emit type checker",
   "keywords": [
     "emit",
@@ -15,7 +15,7 @@
   "license": "MIT",
   "homepage": "https://github.com/emit-js/type#readme",
   "devDependencies": {
-    "@emit-js/emit": "3.2.8",
+    "@emit-js/emit": "3.2.9",
     "eslint": "5.16.0",
     "eslint-config-prettier": "4.1.0",
     "eslint-plugin-prettier": "3.0.1",
